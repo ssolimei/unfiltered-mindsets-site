@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Unfiltered Mindsets | AI Assistant</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  :root{
+    --bg:#0a0a0a;
+    --surface:#111111;
+    --card:#1a1a1a;
+    --border:#2a2a2a;
+    --accent:#e8ff00;
+    --accent2:#ff3c3c;
+    --text:#f0f0f0;
+    --muted:#666;
+    --user-bubble:#1e1e1e;
+    --bot-bubble:#111;
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  /* HEADER */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+    border-bottom:1px solid var(--border);
+    background:var(--bg);
+    flex-shrink:0;
+  }
+  .logo{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--text);
+  }
+  .logo span{color:var(--accent);}
+  .status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    color:var(--muted);
+  }
+  .dot{
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--accent);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+
+  /* QUICK ACTIONS */
+  .quick-bar{
+    display:flex;
+    gap:8px;
+    padding:10px 20px;
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+    flex-shrink:0;
+    scrollbar-width:none;
+  }
+  .quick-bar::-webkit-scrollbar{display:none;}
+  .chip{
+    flex-shrink:0;
+    padding:6px 14px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    font-size:12px;
+    color:var(--muted);
+    cursor:pointer;
+    transition:all 0.2s;
+    background:transparent;
+    white-space:nowrap;
+  }
+  .chip:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    background:rgba(232,255,0,0.05);
+  }
+
+  /* CHAT */
+  #chat{
+    flex:1;
+    overflow-y:auto;
+    padding:24px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--border) transparent;
+  }
+
+  .msg{
+    display:flex;
+    gap:12px;
+    max-width:780px;
+    animation:fadeUp 0.3s ease;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+  .msg.user{align-self:flex-end;flex-direction:row-reverse;}
+  .msg.bot{align-self:flex-start;}
+
+  .avatar{
+    width:32px;height:32px;
+    border-radius:50%;
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;
+    margin-top:2px;
+  }
+  .bot .avatar{background:var(--accent);color:#000;}
+  .user .avatar{background:var(--card);color:var(--muted);border:1px solid var(--border);}
+
+  .bubble{
+    padding:12px 16px;
+    border-radius:12px;
+    font-size:14px;
+    line-height:1.65;
+    max-width:640px;
+  }
+  .bot .bubble{
+    background:var(--bot-bubble);
+    border:1px solid var(--border);
+    border-top-left-radius:3px;
+    color:var(--text);
+  }
+  .user .bubble{
+    background:var(--user-bubble);
+    border:1px solid #2a2a2a;
+    border-top-right-radius:3px;
+    color:var(--text);
+  }
+
+  .bubble strong{color:var(--accent);}
+  .bubble a{color:var(--accent);text-decoration:none;}
+  .bubble a:hover{text-decoration:underline;}
+
+  /* typing indicator */
+  .typing{display:flex;gap:5px;align-items:center;padding:4px 0;}
+  .typing span{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--muted);
+    animation:bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2){animation-delay:.2s;}
+  .typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}
+
+  /* INPUT */
+  .input-area{
+    padding:16px 20px;
+    border-top:1px solid var(--border);
+    display:flex;
+    gap:10px;
+    align-items:flex-end;
+    background:var(--bg);
+    flex-shrink:0;
+  }
+  #userInput{
+    flex:1;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 16px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    resize:none;
+    max-height:120px;
+    outline:none;
+    transition:border-color 0.2s;
+    line-height:1.5;
+  }
+  #userInput:focus{border-color:var(--accent);}
+  #userInput::placeholder{color:var(--muted);}
+
+  #sendBtn{
+    background:var(--accent);
+    border:none;
+    border-radius:10px;
+    width:44px;height:44px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    transition:opacity 0.2s;
+  }
+  #sendBtn:hover{opacity:0.85;}
+  #sendBtn svg{width:18px;height:18px;}
+
+  .footer-note{
+    text-align:center;
+    font-size:11px;
+    color:var(--muted);
+    padding:0 0 10px;
+  }
+
+  /* FORM CARD inside chat */
+  .form-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-width:360px;
+    margin-top:8px;
+  }
+  .form-card input{
+    background:#0a0a0a;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 14px;
+    color:var(--text);
+    font-size:13px;
+    font-family:'Inter',sans-serif;
+    outline:none;
+    transition:border-color 0.2s;
+  }
+  .form-card input:focus{border-color:var(--accent);}
+  .form-card input::placeholder{color:var(--muted);}
+  .form-card textarea{
+    background:#0a0a0a;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 14px;
+    color:var(--text);
+    font-size:13px;
+    font-family:'Inter',sans-serif;
+    outline:none;
+    resize:none;
+    min-height:80px;
+    transition:border-color 0.2s;
+  }
+  .form-card textarea:focus{border-color:var(--accent);}
+  .form-card textarea::placeholder{color:var(--muted);}
+  .form-btn{
+    background:var(--accent);
+    color:#000;
+    border:none;
+    border-radius:8px;
+    padding:10px;
+    font-weight:700;
+    font-size:13px;
+    cursor:pointer;
+    letter-spacing:0.05em;
+    transition:opacity 0.2s;
+  }
+  .form-btn:hover{opacity:0.85;}
+
+  /* scroll to bottom */
+  #chat{scroll-behavior:smooth;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">UNFILTERED <span>MINDSETS</span></div>
+  <div class="status"><div class="dot"></div> AI Assistant · Online</div>
+</header>
+
+<div class="quick-bar">
+  <button class="chip" onclick="quickSend('Tell me about your services')">⚡ Services</button>
+  <button class="chip" onclick="quickSend('I want to book a Reality Check session')">📅 Book a Reality Check</button>
+  <button class="chip" onclick="quickSend('I want to join the newsletter')">📬 Newsletter</button>
+  <button class="chip" onclick="quickSend('Tell me about keynote sessions')">🎤 Keynotes</button>
+  <button class="chip" onclick="quickSend('I have a client enquiry')">💬 Client Enquiry</button>
+  <button class="chip" onclick="quickSend('Who is Santiago García Solimei?')">👤 About Santiago</button>
+</div>
+
+<div id="chat"></div>
+
+<div class="input-area">
+  <textarea id="userInput" rows="1" placeholder="Ask me anything. No filter." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+  <button id="sendBtn" onclick="sendMessage()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+    </svg>
+  </button>
+</div>
+<div class="footer-note">Powered by Claude · Unfiltered Mindsets © 2025</div>
+
+<script>
+const SYSTEM_PROMPT = `You are the AI assistant for Unfiltered Mindsets, a global AI & digital consulting firm founded by Santiago García Solimei. Your personality is bold, direct, provocative, and refreshingly honest — matching the brand's radical truth philosophy. No corporate fluff. No buzzwords without substance. No PowerPoint.
+
+You help with:
+1. CLIENT ENQUIRIES — Answer questions about services: AI Strategy & Implementation, Process Automation, Digital Transformation, and The Ghost Ship Audit. Be specific and bold.
+2. NEWSLETTER SIGN-UP — Guide users to subscribe to the Unfiltered newsletter (weekly provocations, no spam). When they want to subscribe, collect their name and email, then tell them to confirm in the form that appears.
+3. KEYNOTE SESSIONS — Santiago speaks on AI, digital transformation, radical truth in business, and dismantling corporate friction. Collect interest and contact details.
+4. BOOKING — Direct users to book a 15-min Reality Check. Encourage them to submit their info via the enquiry form.
+
+SERVICES DETAIL:
+- AI Strategy & Implementation: LLM integrations, automation pipelines, measurable ROI — not vanity pilots.
+- Process Automation: Map broken workflows, rebuild with automation-first logic. KISS. YAGNI. Only what's needed.
+- Digital Transformation: End-to-end vision — infrastructure, workflows, culture. Fix the nervous system, not the symptoms.
+- Ghost Ship Audit: Unfiltered diagnostic of your digital operation. When your dashboards are green but the company is drifting.
+
+ABOUT SANTIAGO: Nearly two decades in corporate trenches, led digital transformation at one of the world's most complex multinationals. 20+ years in multinationals, 3 continents of operations. Chief Clarity Officer. He knows the corporate rules — which is exactly why he knows how to break them.
+
+TONE RULES:
+- Be sharp, confident, occasionally provocative. Use short punchy sentences.
+- Never say "Great question!" or similar filler.
+- When capturing leads, ask for name, email, and their key challenge — keep it conversational.
+- When user wants to send an enquiry or book, tell them to fill in the form that will appear.
+- Format responses with line breaks for readability. Use **bold** for emphasis.
+- Keep responses concise — under 180 words unless explaining a service in detail.
+
+CONTACT: santi@unfiltered-mindsets.com`;
+
+let history = [];
+let pendingForm = null; // 'newsletter' | 'enquiry' | 'keynote'
+
+function appendMsg(role, html, showForm=null){
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar';
+  avatar.textContent = role === 'bot' ? 'U' : 'ME';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = html;
+
+  if(showForm === 'newsletter'){
+    bubble.appendChild(buildNewsletterForm());
+  } else if(showForm === 'enquiry'){
+    bubble.appendChild(buildEnquiryForm());
+  } else if(showForm === 'keynote'){
+    bubble.appendChild(buildKeynoteForm());
+  }
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function appendTyping(){
+  const chat = document.getElementById('chat');
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+  div.id = 'typing-indicator';
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar';
+  avatar.textContent = 'U';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+
+  div.appendChild(avatar);
+  div.appendChild(bubble);
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeTyping(){
+  const el = document.getElementById('typing-indicator');
+  if(el) el.remove();
+}
+
+function formatText(t){
+  return t
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n/g,'<br>');
+}
+
+function detectFormTrigger(text){
+  const t = text.toLowerCase();
+  if(/(newsletter|subscribe|join.*news|news.*join)/i.test(t)) return 'newsletter';
+  if(/(keynote|speak|speaking|keynote session)/i.test(t)) return 'keynote';
+  if(/(enquiry|enquire|book|reality check|contact|hire|reach out|get in touch)/i.test(t)) return 'enquiry';
+  return null;
+}
+
+async function sendMessage(overrideText){
+  const input = document.getElementById('userInput');
+  const text = overrideText !== undefined ? overrideText : input.value.trim();
+  if(!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+
+  appendMsg('user', formatText(text));
+  history.push({role:'user', content: text});
+
+  appendTyping();
+
+  try{
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        system: SYSTEM_PROMPT,
+        messages: history
+      })
+    });
+    const data = await res.json();
+    removeTyping();
+
+    const reply = data.content?.map(b=>b.text||'').join('') || 'Something went wrong. Try again.';
+    history.push({role:'assistant', content: reply});
+
+    const form = detectFormTrigger(text);
+    appendMsg('bot', formatText(reply), form);
+
+  } catch(e){
+    removeTyping();
+    appendMsg('bot','Connection issue. Try refreshing.');
+  }
+}
+
+function quickSend(text){
+  sendMessage(text);
+}
+
+function handleKey(e){
+  if(e.key==='Enter' && !e.shiftKey){
+    e.preventDefault();
+    sendMessage();
+  }
+}
+
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,120)+'px';
+}
+
+/* ---- FORMS ---- */
+function buildNewsletterForm(){
+  const wrap = document.createElement('div');
+  wrap.className = 'form-card';
+  wrap.innerHTML = `
+    <input id="nl-name" placeholder="Your name" type="text"/>
+    <input id="nl-email" placeholder="Your email" type="email"/>
+    <button class="form-btn" onclick="submitNewsletter()">JOIN THE NEWSLETTER →</button>
+  `;
+  return wrap;
+}
+
+function submitNewsletter(){
+  const name = document.getElementById('nl-name')?.value.trim();
+  const email = document.getElementById('nl-email')?.value.trim();
+  if(!name || !email){ alert('Please fill in both fields.'); return; }
+  // Open Beehiiv newsletter + trigger email
+  const mailto = `mailto:santi@unfiltered-mindsets.com?subject=Newsletter Sign-Up: ${encodeURIComponent(name)}&body=New newsletter subscriber:%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}`;
+  window.open(mailto);
+  window.open('https://unfiltered-news.beehiiv.com','_blank');
+  appendMsg('bot', `<strong>${name}</strong>, you're in. Weekly unfiltered truth — no spam, no PowerPoint. Check your inbox.`);
+}
+
+function buildEnquiryForm(){
+  const wrap = document.createElement('div');
+  wrap.className = 'form-card';
+  wrap.innerHTML = `
+    <input id="eq-name" placeholder="Your name" type="text"/>
+    <input id="eq-email" placeholder="Your email" type="email"/>
+    <input id="eq-company" placeholder="Company (optional)" type="text"/>
+    <textarea id="eq-msg" placeholder="What's the real problem you're dealing with?"></textarea>
+    <button class="form-btn" onclick="submitEnquiry()">SEND THE REALITY CHECK REQUEST →</button>
+  `;
+  return wrap;
+}
+
+function submitEnquiry(){
+  const name = document.getElementById('eq-name')?.value.trim();
+  const email = document.getElementById('eq-email')?.value.trim();
+  const company = document.getElementById('eq-company')?.value.trim();
+  const msg = document.getElementById('eq-msg')?.value.trim();
+  if(!name || !email || !msg){ alert('Name, email and message are required.'); return; }
+  const body = `New client enquiry from the AI Assistant:%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0ACompany: ${encodeURIComponent(company||'N/A')}%0A%0AMessage:%0A${encodeURIComponent(msg)}`;
+  window.open(`mailto:santi@unfiltered-mindsets.com?subject=Client Enquiry: ${encodeURIComponent(name)}&body=${body}`);
+  appendMsg('bot', `Message sent. Santiago doesn't do slow follow-ups. <strong>Brace yourself for the unfiltered truth.</strong>`);
+}
+
+function buildKeynoteForm(){
+  const wrap = document.createElement('div');
+  wrap.className = 'form-card';
+  wrap.innerHTML = `
+    <input id="kn-name" placeholder="Your name" type="text"/>
+    <input id="kn-email" placeholder="Your email" type="email"/>
+    <input id="kn-org" placeholder="Organization / Event" type="text"/>
+    <textarea id="kn-topic" placeholder="Topic or event details you have in mind"></textarea>
+    <button class="form-btn" onclick="submitKeynote()">REQUEST KEYNOTE →</button>
+  `;
+  return wrap;
+}
+
+function submitKeynote(){
+  const name = document.getElementById('kn-name')?.value.trim();
+  const email = document.getElementById('kn-email')?.value.trim();
+  const org = document.getElementById('kn-org')?.value.trim();
+  const topic = document.getElementById('kn-topic')?.value.trim();
+  if(!name || !email){ alert('Name and email are required.'); return; }
+  const body = `Keynote Request:%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AOrganization: ${encodeURIComponent(org||'N/A')}%0A%0ATopic / Details:%0A${encodeURIComponent(topic||'N/A')}`;
+  window.open(`mailto:santi@unfiltered-mindsets.com?subject=Keynote Request: ${encodeURIComponent(name)}&body=${body}`);
+  appendMsg('bot', `Keynote request received. Santiago speaks without a script and without a filter. <strong>Your audience won't forget it.</strong>`);
+}
+
+/* ---- INIT ---- */
+window.onload = () => {
+  appendMsg('bot', `No PowerPoint. No committees. Just the truth your business needs.<br><br>I'm the AI assistant for <strong>Unfiltered Mindsets</strong>. Tell me what problem you're actually dealing with — or pick one of the options above.`);
+};
+</script>
+<script src="chat-widget.js"></script>
+</body>
+</body>
+</html>
