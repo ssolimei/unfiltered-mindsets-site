@@ -3,6 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SW KILL SWITCH — unregisters any service worker from old versions of the site + clears caches.
+       Runs on every page load. Safe to leave in forever. Removes stale PWA content on first visit. -->
+  <script>
+    (function(){
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs){
+          regs.forEach(function(r){ r.unregister(); });
+        }).catch(function(){});
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(keys){
+          keys.forEach(function(k){ caches.delete(k); });
+        }).catch(function(){});
+      }
+    })();
+  </script>
   <title>Unfiltered Mindsets — Digital Strategy for Hospitality & Tourism</title>
   <meta name="description" content="Boutique digital strategy consultancy for hospitality and tourism brands. We help hotels, wineries and experience operators capture DACH, UK and Nordic markets. Based in Mallorca." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -243,9 +259,10 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { height: 50vw; min-height: 280px; }
+      .hero-right { height: 70vw; min-height: 360px; max-height: 480px; }
+      .hero-img { object-position: center center; }
       .hero-left { padding: 6rem 1.5rem 2.5rem; }
-      .hero-img-overlay { background: linear-gradient(to bottom, transparent 50%, var(--black) 100%); }
+      .hero-img-overlay { background: linear-gradient(to bottom, transparent 65%, var(--black) 100%); }
       .problem-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .problem-left { padding-right: 0; border-right: none; border-bottom: var(--border); padding-bottom: 2.5rem; }
       .problem-right { padding-left: 0; }
