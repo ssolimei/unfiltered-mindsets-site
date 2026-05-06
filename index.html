@@ -3,22 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- SW KILL SWITCH — unregisters any service worker from old versions of the site + clears caches.
-       Runs on every page load. Safe to leave in forever. Removes stale PWA content on first visit. -->
-  <script>
-    (function(){
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(regs){
-          regs.forEach(function(r){ r.unregister(); });
-        }).catch(function(){});
-      }
-      if ('caches' in window) {
-        caches.keys().then(function(keys){
-          keys.forEach(function(k){ caches.delete(k); });
-        }).catch(function(){});
-      }
-    })();
-  </script>
   <title>Unfiltered Mindsets — Digital Strategy for Hospitality & Tourism</title>
   <meta name="description" content="Boutique digital strategy consultancy for hospitality and tourism brands. We help hotels, wineries and experience operators capture DACH, UK and Nordic markets. Based in Mallorca." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -259,10 +243,9 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { height: 70vw; min-height: 360px; max-height: 480px; }
-      .hero-img { object-position: center center; }
+      .hero-right { height: 50vw; min-height: 280px; }
       .hero-left { padding: 6rem 1.5rem 2.5rem; }
-      .hero-img-overlay { background: linear-gradient(to bottom, transparent 65%, var(--black) 100%); }
+      .hero-img-overlay { background: linear-gradient(to bottom, transparent 50%, var(--black) 100%); }
       .problem-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
       .problem-left { padding-right: 0; border-right: none; border-bottom: var(--border); padding-bottom: 2.5rem; }
       .problem-right { padding-left: 0; }
@@ -304,7 +287,10 @@
 <!-- NAV -->
 <nav>
   <div style="display:flex;align-items:center;gap:1.5rem;">
-    <div class="nav-logo">UNFILTERED<span>.</span>MINDSETS</div>
+    <div class="nav-brand" style="display:flex;flex-direction:column;line-height:1;">
+      <div class="nav-logo">UNFILTERED<span>.</span>MINDSETS</div>
+      <div class="nav-strapline" style="font-family:var(--font-m);font-size:0.55rem;letter-spacing:0.18em;color:var(--green);text-transform:uppercase;margin-top:3px;">think without filters · act without friction</div>
+    </div>
     <div style="display:flex;align-items:center;gap:0.75rem;">
       <a href="https://www.linkedin.com/in/santiago-garcia-solimei" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:var(--grey);transition:color 0.2s;display:flex;align-items:center;" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--grey)'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -336,7 +322,7 @@
 <!-- HERO -->
 <section id="hero" style="padding:0; border-bottom: var(--border);">
   <div class="hero-left">
-    <div class="hero-tag" data-i18n="hero.tag">BOUTIQUE DIGITAL STRATEGY · PALMA DE MALLORCA</div>
+    <div class="hero-tag" data-i18n="hero.tag">THINK WITHOUT FILTERS · ACT WITHOUT FRICTION  ·  DIGITAL STRATEGY · MALLORCA · DACH / UK / NORDICS</div>
     <h1 class="hero-title" data-i18n-html="hero.title">YOU HAVE THE<br><em>PRODUCT.</em><br>WE GET THE<br>TOURISTS.</h1>
     <p class="hero-sub" data-i18n-html="hero.sub">German, British and Nordic tourists are searching for you. <strong>They're booking your competitor.</strong> We close the gap.</p>
     <div class="hero-actions">
@@ -358,7 +344,7 @@
 
 <!-- TICKER -->
 <div class="ticker-wrap">
-  <span class="ticker-track">HOSPITALITY &nbsp;·&nbsp; TOURISM &nbsp;·&nbsp; DIGITAL TRANSFORMATION &nbsp;·&nbsp; US &nbsp;·&nbsp; UK &nbsp;·&nbsp; GERMANY &nbsp;·&nbsp; AUSTRALIA &nbsp;·&nbsp; NORDICS &nbsp;·&nbsp; GHOST SHIP AUDIT &nbsp;·&nbsp; FERRARI SYNDROME &nbsp;·&nbsp; NO POWERPOINT &nbsp;·&nbsp; NO COMMITTEES &nbsp;·&nbsp; JUST RESULTS &nbsp;·&nbsp; HOOTSUITE FUTURE OF SOCIAL · WIRED FEST MILANO · DIGITAL TRAVEL CONNECT · SOCIAL MEDIA CAMP &nbsp;·&nbsp; HOSPITALITY &nbsp;·&nbsp; TOURISM &nbsp;·&nbsp; DIGITAL TRANSFORMATION &nbsp;·&nbsp; US &nbsp;·&nbsp; UK &nbsp;·&nbsp; GERMANY &nbsp;·&nbsp; AUSTRALIA &nbsp;·&nbsp; NORDICS &nbsp;·&nbsp; GHOST SHIP AUDIT &nbsp;·&nbsp; FERRARI SYNDROME &nbsp;·&nbsp; NO POWERPOINT &nbsp;·&nbsp; NO COMMITTEES &nbsp;·&nbsp; JUST RESULTS &nbsp;·&nbsp; HOOTSUITE FUTURE OF SOCIAL · WIRED FEST MILANO · DIGITAL TRAVEL CONNECT · SOCIAL MEDIA CAMP &nbsp;·&nbsp;</span>
+  <span class="ticker-track">HOSPITALITY &nbsp;·&nbsp; TOURISM &nbsp;·&nbsp; DIGITAL TRANSFORMATION &nbsp;·&nbsp; US &nbsp;·&nbsp; UK &nbsp;·&nbsp; GERMANY &nbsp;·&nbsp; AUSTRALIA &nbsp;·&nbsp; NORDICS &nbsp;·&nbsp; FRICTION AUDIT &nbsp;·&nbsp; FERRARI SYNDROME &nbsp;·&nbsp; NO POWERPOINT &nbsp;·&nbsp; NO COMMITTEES &nbsp;·&nbsp; JUST RESULTS &nbsp;·&nbsp; HOOTSUITE FUTURE OF SOCIAL · WIRED FEST MILANO · DIGITAL TRAVEL CONNECT · SOCIAL MEDIA CAMP &nbsp;·&nbsp; HOSPITALITY &nbsp;·&nbsp; TOURISM &nbsp;·&nbsp; DIGITAL TRANSFORMATION &nbsp;·&nbsp; US &nbsp;·&nbsp; UK &nbsp;·&nbsp; GERMANY &nbsp;·&nbsp; AUSTRALIA &nbsp;·&nbsp; NORDICS &nbsp;·&nbsp; FRICTION AUDIT &nbsp;·&nbsp; FERRARI SYNDROME &nbsp;·&nbsp; NO POWERPOINT &nbsp;·&nbsp; NO COMMITTEES &nbsp;·&nbsp; JUST RESULTS &nbsp;·&nbsp; HOOTSUITE FUTURE OF SOCIAL · WIRED FEST MILANO · DIGITAL TRAVEL CONNECT · SOCIAL MEDIA CAMP &nbsp;·&nbsp;</span>
 </div>
 
 <!-- PROBLEM -->
@@ -472,10 +458,10 @@
       <p style="max-width:360px; color:var(--grey); font-size:0.9rem; line-height:1.75;" data-i18n="process.sub">Four steps. No committees. No 200-page reports. From first call to first results in 30 days or less.</p>
     </div>
     <div class="process-steps reveal">
-      <div class="process-step"><div class="process-num">01</div><h3 data-i18n="p1.title">REALITY CHECK</h3><p data-i18n="p1.desc">Free 15-min call. We tell you exactly what's broken and whether we can fix it. No pitch. Just the truth.</p><span class="process-price" data-i18n="p1.price">FREE · 15 MIN</span></div>
-      <div class="process-step"><div class="process-num">02</div><h3 data-i18n="p2.title">GHOST SHIP AUDIT</h3><p data-i18n="p2.desc">72-hour deep diagnostic. Web, social, reputation, booking funnels, competitor gap. Prioritized action plan — not a slide deck.</p><span class="process-price" data-i18n="p2.price">FROM €1.500</span></div>
-      <div class="process-step"><div class="process-num">03</div><h3 data-i18n="p3.title">STRATEGY SPRINT</h3><p data-i18n="p3.desc">Full digital strategy for your target market. Multilingual content, booking funnels, platform setup, media outreach. Executable from day one.</p><span class="process-price" data-i18n="p3.price">FROM €3.000</span></div>
-      <div class="process-step"><div class="process-num">04</div><h3 data-i18n="p4.title">EXECUTION</h3><p data-i18n="p4.desc">We implement with you or alongside your team. Monthly reporting, KPI tracking, ongoing optimization. Results before the season ends.</p><span class="process-price" data-i18n="p4.price">RETAINER FROM €1.500/MO</span></div>
+      <div class="process-step"><div class="process-num">01</div><h3 data-i18n="p1.title">REALITY CHECK</h3><p data-i18n="p1.desc">Free 15-min call. We tell you exactly what's broken and whether we can fix it. No pitch. Just the truth.</p><span class="process-price" data-i18n="p1.price">15 MIN · FREE CALL</span></div>
+      <div class="process-step"><div class="process-num">02</div><h3 data-i18n="p2.title">FRICTION AUDIT</h3><p data-i18n="p2.desc">2-week diagnostic. We map every leak between your brand promise and your direct-booking funnel — web, social, reputation, OTA dependency, competitor gap. You leave with a ranked hit-list, not a slide deck.</p><span class="process-price" data-i18n="p2.price">2 WEEKS · FIXED FEE</span></div>
+      <div class="process-step"><div class="process-num">03</div><h3 data-i18n="p3.title">VALUE SPRINT</h3><p data-i18n="p3.desc">2–4 weeks. One customer-visible fix per sprint. Multilingual content, booking funnels, platform setup, media outreach. No decks. No committees. Ship or kill.</p><span class="process-price" data-i18n="p3.price">2–4 WEEKS · FIXED FEE</span></div>
+      <div class="process-step"><div class="process-num">04</div><h3 data-i18n="p4.title">UNFILTERED OS</h3><p data-i18n="p4.desc">6-month retainer. We install the operating rhythm — Napkin reviews, Kanban of Truth, Mechanism of Truth — alongside your team. Monthly reporting, KPI tracking, and we leave it running.</p><span class="process-price" data-i18n="p4.price">6-MONTH RETAINER</span></div>
     </div>
   </div>
 </section>
@@ -485,16 +471,16 @@
   <div class="container">
     <div class="section-header reveal">
       <div>
-        <div class="label" data-i18n="services.label">What We Do</div>
-        <h2 class="section-title" data-i18n-html="services.title">RUTHLESSLY<br><em>FOCUSED.</em></h2>
+        <div class="label" data-i18n="services.label">Our Capabilities</div>
+        <h2 class="section-title" data-i18n-html="services.title">WHAT WE'RE<br><em>BUILT TO SOLVE.</em></h2>
       </div>
-      <p style="max-width:360px; color:var(--grey); font-size:0.9rem; line-height:1.75;" data-i18n="services.sub">We don't do everything. We do the four things that move the needle for hospitality and tourism brands targeting international markets.</p>
+      <p style="max-width:360px; color:var(--grey); font-size:0.9rem; line-height:1.75;" data-i18n="services.sub">Four capabilities, mapped to the way international travelers find — or fail to find — your hospitality brand.</p>
     </div>
     <div class="grid-2 reveal" style="gap:1px; background:rgba(57,255,20,0.12);">
-      <div class="service-card"><div class="service-num">01 / 04</div><h3 data-i18n="s1.title">DIGITAL MARKET ENTRY</h3><p data-i18n="s1.desc">You have a great product. German, British and Nordic tourists are coming to your region — and choosing your competitor. We build the full digital presence that puts you in their consideration set before they land.</p><div class="service-tags"><span class="tag">DACH Strategy</span><span class="tag">GetYourGuide</span><span class="tag">TripAdvisor</span><span class="tag">Multilingual SEO</span><span class="tag">OTA Optimization</span></div></div>
-      <div class="service-card"><div class="service-num">02 / 04</div><h3 data-i18n="s2.title">GHOST SHIP AUDIT</h3><p data-i18n="s2.desc">72-hour diagnostic of your entire digital presence. We find the gaps you can't see from the inside — broken funnels, invisible booking flows, content that kills conversion. Prioritized action plan, not a 200-page report.</p><div class="service-tags"><span class="tag">Web Audit</span><span class="tag">Social Audit</span><span class="tag">Reputation Audit</span><span class="tag">Funnel Analysis</span><span class="tag">Quick Wins</span></div></div>
-      <div class="service-card"><div class="service-num">03 / 04</div><h3 data-i18n="s3.title">LEAD GENERATION SYSTEMS</h3><p data-i18n="s3.desc">Stop waiting for tourists to find you. We build automated lead capture systems — multilingual landing pages, booking funnels, email sequences, review generation — that work while you sleep.</p><div class="service-tags"><span class="tag">Landing Pages</span><span class="tag">Email Automation</span><span class="tag">Review Funnels</span><span class="tag">Lead Magnets</span><span class="tag">CRM Setup</span></div></div>
-      <div class="service-card"><div class="service-num">04 / 04</div><h3 data-i18n="s4.title">KEYNOTES & TRAINING</h3><p data-i18n="s4.desc">Corporate keynotes on digital transformation, social media strategy and hospitality innovation. Academic courses at business schools and universities. Available in English, Spanish and Italian. 20+ events across Europe.</p><div class="service-tags"><span class="tag">Keynote Speaking</span><span class="tag">Corporate Training</span><span class="tag">Academic Courses</span><span class="tag">Digital Strategy</span><span class="tag">Social Media</span></div></div>
+      <div class="service-card"><div class="service-num">01 / 04</div><h3 data-i18n="s1.title">INTERNATIONAL MARKET ENTRY</h3><p data-i18n="s1.desc">Your product is great. German, British and Nordic travelers are coming to your region — and choosing your competitor because they don't know you exist. We build the multilingual digital presence that puts you in their consideration set before they land.</p><div class="service-tags"><span class="tag">DACH</span><span class="tag">UK</span><span class="tag">Nordics</span><span class="tag">Multilingual SEO</span><span class="tag">OTA Optimization</span></div></div>
+      <div class="service-card"><div class="service-num">02 / 04</div><h3 data-i18n="s2.title">BRAND & REPUTATION DIAGNOSTICS</h3><p data-i18n="s2.desc">You can't fix what you can't see. We diagnose your entire digital surface — web, social, reviews, booking flows — using our Ghost Ship and Ferrari Syndrome frameworks. Output: a ranked hit-list of what's broken and what to fix first.</p><div class="service-tags"><span class="tag">Web Audit</span><span class="tag">Social Audit</span><span class="tag">Review Audit</span><span class="tag">Funnel Analysis</span><span class="tag">Competitor Gap</span></div></div>
+      <div class="service-card"><div class="service-num">03 / 04</div><h3 data-i18n="s3.title">DIRECT BOOKING & LEAD GEN</h3><p data-i18n="s3.desc">Stop paying OTAs to rent your customers. We build automated lead-capture and direct-booking systems — multilingual landing pages, booking funnels, email sequences, review generation — that work while you sleep.</p><div class="service-tags"><span class="tag">Landing Pages</span><span class="tag">Booking Funnels</span><span class="tag">Email Automation</span><span class="tag">Review Funnels</span><span class="tag">CRM Setup</span></div></div>
+      <div class="service-card"><div class="service-num">04 / 04</div><h3 data-i18n="s4.title">KEYNOTES & EDUCATION</h3><p data-i18n="s4.desc">Corporate keynotes on digital transformation, social media strategy and hospitality innovation. Academic courses at business schools — including 10+ years at ESERP, UIB and ESCOEX. Available in English, Spanish and Italian.</p><div class="service-tags"><span class="tag">Corporate Keynotes</span><span class="tag">Academic Courses</span><span class="tag">Speaker Bookings</span><span class="tag">Workshops</span></div></div>
     </div>
   </div>
 </section>
@@ -530,10 +516,10 @@
     <div class="about-content reveal">
       <div class="label" data-i18n="about.label">The Founder</div>
       <h2 class="about-headline" data-i18n-html="about.title">18 YEARS.<br>40 COUNTRIES.<br><em>ZERO</em> NOISE.</h2>
-      <p class="about-text" data-i18n="about.text1">Santiago García Solimei spent 18 years as Global Director of Digital Transformation at Meliá Hotels International — one of the world's largest hotel groups. He ran digital strategy across 40+ countries, built transformation programs from scratch, and learned what works and what doesn't at every scale.</p>
+      <p class="about-text" data-i18n="about.text1">Santiago García Solimei spent 18 years as Global Director of Social Media & Brands PR at Meliá Hotels International — one of the world's largest hotel groups. He led social media and brand communications across 40+ countries, 87 hotels and a €4.5M EMEA budget, and drove digital adoption inside a legacy hospitality giant. He learned what works and what doesn't at every scale.</p>
       <p class="about-text" data-i18n="about.text2">Then he walked away from the corporate machine and built Unfiltered Mindsets in Mallorca — a boutique consultancy for brands that want global-director thinking without the corporate overhead, committee approval, or slide decks.</p>
       <ul class="credential-list">
-        <li><span class="check">✓</span> <span data-i18n="cred.1">Global Director of Digital Transformation — Meliá Hotels International</span></li>
+        <li><span class="check">✓</span> <span data-i18n="cred.1">Global Director of Social Media & Brands PR — Meliá Hotels International</span></li>
         <li><span class="check">✓</span> <span data-i18n="cred.2">18 years in hospitality digital strategy across 40+ countries</span></li>
         <li><span class="check">✓</span> <span data-i18n="cred.3">Expert in DACH, UK and Nordic inbound tourism markets</span></li>
         <li><span class="check">✓</span> <span data-i18n="cred.4">Professor at ESERP, UIB and ESCOEX Business Schools for 10+ years</span></li>
@@ -636,6 +622,7 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">UNFILTERED<span>.</span>MINDSETS</div>
+      <p class="footer-tagline" style="font-family:var(--font-m);font-size:0.72rem;letter-spacing:0.2em;color:var(--green);text-transform:uppercase;margin-top:0.4rem;margin-bottom:0.6rem;">Think Without Filters. Act Without Friction.</p>
       <p class="footer-meta">© 2026 Unfiltered Mindsets · Palma de Mallorca · Digital Strategy for Hospitality & Tourism</p>
       <ul class="footer-links">
         <li><a href="#keynotes" data-i18n="nav.keynotes">Keynotes</a></li>
@@ -662,7 +649,7 @@
     <div class="wa-quick" id="waQuick">
       <button class="wa-quick-btn" onclick="sendWA(this, '🔍 I want a free Reality Check')">🔍 I want a free Reality Check</button>
       <button class="wa-quick-btn" onclick="sendWA(this, '🎤 I want to book Santiago as a speaker')">🎤 Book Santiago as speaker</button>
-      <button class="wa-quick-btn" onclick="sendWA(this, '📊 Tell me about the Ghost Ship Audit')">📊 Ghost Ship Audit</button>
+      <button class="wa-quick-btn" onclick="sendWA(this, '📊 Tell me about the Friction Audit')">📊 Friction Audit</button>
       <button class="wa-quick-btn" onclick="sendWA(this, '🌍 I need to reach German tourists')">🌍 Reach German tourists</button>
     </div>
     <a href="https://wa.me/34600949753" target="_blank" class="wa-footer-link" id="waLink">💬 Open WhatsApp Chat</a>
@@ -679,7 +666,7 @@ const T = {
     "nav.keynotes": "Keynotes", "nav.process": "Process", "nav.services": "Services",
     "nav.frameworks": "Frameworks", "nav.about": "About", "nav.contact": "Contact",
     "nav.cta": "Book a Reality Check",
-    "hero.tag": "BOUTIQUE DIGITAL STRATEGY · GLOBAL REACH",
+    "hero.tag": "THINK WITHOUT FILTERS · ACT WITHOUT FRICTION  ·  DIGITAL STRATEGY · MALLORCA · DACH / UK / NORDICS",
     "hero.title": "YOU HAVE THE<br><em>PRODUCT.</em><br>WE GET THE<br>TOURISTS.",
     "hero.sub": "International tourists from the US, UK, Germany, Australia and beyond are searching for you. <strong>They are booking your competitor.</strong> We close the gap.",
     "hero.cta1": "Book a Free Reality Check", "hero.cta2": "See How It Works →",
@@ -701,16 +688,16 @@ const T = {
     "keynotes.booking.cta": "Request Speaker Info →",
     "process.label": "How It Works", "process.title": "FROM INVISIBLE<br>TO <em>BOOKED.</em>",
     "process.sub": "Four steps. No committees. No 200-page reports. From first call to first results in 30 days or less.",
-    "p1.title": "REALITY CHECK", "p1.desc": "Free 15-min call. We tell you exactly what is broken and whether we can fix it. No pitch. Just the truth.", "p1.price": "FREE · 15 MIN",
-    "p2.title": "GHOST SHIP AUDIT", "p2.desc": "72-hour deep diagnostic. Web, social, reputation, booking funnels, competitor gap. Prioritized action plan — not a slide deck.", "p2.price": "FROM €1.500",
-    "p3.title": "STRATEGY SPRINT", "p3.desc": "Full digital strategy for your target market. Multilingual content, booking funnels, platform setup, media outreach. Executable from day one.", "p3.price": "FROM €3.000",
-    "p4.title": "EXECUTION", "p4.desc": "We implement with you or alongside your team. Monthly reporting, KPI tracking, ongoing optimization. Results before the season ends.", "p4.price": "RETAINER FROM €1.500/MO",
-    "services.label": "What We Do", "services.title": "RUTHLESSLY<br><em>FOCUSED.</em>",
-    "services.sub": "We do not do everything. We do the four things that move the needle for hospitality and tourism brands targeting US, UK, German, Australian and Nordic markets.",
-    "s1.title": "DIGITAL MARKET ENTRY", "s1.desc": "You have a great product. US, UK, German and Australian travelers are coming to your region — and choosing your competitor. We build the full digital presence that puts you in their consideration set before they arrive.",
-    "s2.title": "GHOST SHIP AUDIT", "s2.desc": "72-hour diagnostic of your entire digital presence. We find the gaps you cannot see from the inside — broken funnels, invisible booking flows, content that kills conversion.",
-    "s3.title": "LEAD GENERATION SYSTEMS", "s3.desc": "Stop waiting for tourists to find you. We build automated lead capture systems — multilingual landing pages, booking funnels, email sequences, review generation.",
-    "s4.title": "KEYNOTES & TRAINING", "s4.desc": "Corporate keynotes on digital transformation, social media strategy and hospitality innovation. Academic courses at business schools and universities. Available in English, Spanish and Italian. 20+ events across Europe.",
+    "p1.title": "REALITY CHECK", "p1.desc": "Free 15-min call. We tell you exactly what is broken and whether we can fix it. No pitch. Just the truth.", "p1.price": "15 MIN · FREE CALL",
+    "p2.title": "FRICTION AUDIT", "p2.desc": "2-week diagnostic. We map every leak between your brand promise and your direct-booking funnel — web, social, reputation, OTA dependency, competitor gap. You leave with a ranked hit-list, not a slide deck.", "p2.price": "2 WEEKS · FIXED FEE",
+    "p3.title": "VALUE SPRINT", "p3.desc": "2–4 weeks. One customer-visible fix per sprint. Multilingual content, booking funnels, platform setup, media outreach. No decks. No committees. Ship or kill.", "p3.price": "2–4 WEEKS · FIXED FEE",
+    "p4.title": "UNFILTERED OS", "p4.desc": "6-month retainer. We install the operating rhythm — Napkin reviews, Kanban of Truth, Mechanism of Truth — alongside your team. Monthly reporting, KPI tracking, and we leave it running.", "p4.price": "6-MONTH RETAINER",
+    "services.label": "Our Capabilities", "services.title": "WHAT WE'RE<br><em>BUILT TO SOLVE.</em>",
+    "services.sub": "Four capabilities, mapped to the way international travelers find — or fail to find — your hospitality brand.",
+    "s1.title": "INTERNATIONAL MARKET ENTRY", "s1.desc": "Your product is great. German, British and Nordic travelers are coming to your region — and choosing your competitor because they do not know you exist. We build the multilingual digital presence that puts you in their consideration set before they land.",
+    "s2.title": "BRAND & REPUTATION DIAGNOSTICS", "s2.desc": "You cannot fix what you cannot see. We diagnose your entire digital surface — web, social, reviews, booking flows — using our Ghost Ship and Ferrari Syndrome frameworks. Output: a ranked hit-list of what is broken and what to fix first.",
+    "s3.title": "DIRECT BOOKING & LEAD GEN", "s3.desc": "Stop paying OTAs to rent your customers. We build automated lead-capture and direct-booking systems — multilingual landing pages, booking funnels, email sequences, review generation — that work while you sleep.",
+    "s4.title": "KEYNOTES & EDUCATION", "s4.desc": "Corporate keynotes on digital transformation, social media strategy and hospitality innovation. Academic courses at business schools — including 10+ years at ESERP, UIB and ESCOEX. Available in English, Spanish and Italian.",
     "fw.label": "Proprietary Frameworks", "fw.title": "HOW WE<br><em>THINK.</em>",
     "fw.sub": "Built from 18 years inside one of the largest hotel groups in the world. Not theories — battle-tested diagnostic tools.",
     "fw1.tag": "Operational Diagnostic", "fw2.tag": "Capability Gap Analysis", "fw3.tag": "Clarity Test",
@@ -722,9 +709,9 @@ const T = {
     "fw5.desc": "Your youngest employees are the most digitally native — and the most disengaged. This framework reveals the organizational friction burning out the talent you need most.",
     "fw6.desc": "Most brands make digital decisions based on gut feeling or competitor FOMO. Mechanism of Truth installs a data-based architecture that separates signal from noise.",
     "about.label": "The Founder", "about.title": "18 YEARS.<br>40 COUNTRIES.<br><em>ZERO</em> NOISE.",
-    "about.text1": "Santiago García Solimei spent 18 years as Global Director of Digital Transformation at Meliá Hotels International — one of the largest hotel groups in the world. He ran digital strategy across 40+ countries and built transformation programs from scratch.",
+    "about.text1": "Santiago García Solimei spent 18 years as Global Director of Social Media & Brands PR at Meliá Hotels International — one of the largest hotel groups in the world. He led social media and brand communications across 40+ countries, 87 hotels and a €4.5M EMEA budget, and drove digital adoption inside a legacy hospitality giant.",
     "about.text2": "Then he walked away from the corporate machine and built Unfiltered Mindsets in Mallorca — a boutique consultancy for brands that want global-director thinking without the corporate overhead, committee approval, or slide decks.",
-    "cred.1": "Global Director of Digital Transformation — Meliá Hotels International",
+    "cred.1": "Global Director of Social Media & Brands PR — Meliá Hotels International",
     "cred.2": "18 years in hospitality digital strategy across 40+ countries",
     "cred.3": "Expert in DACH, UK and Nordic inbound tourism markets",
     "cred.4": "Professor at ESERP, UIB and ESCOEX Business Schools for 10+ years",
@@ -757,7 +744,7 @@ const T = {
     "nav.keynotes": "Keynotes", "nav.process": "Proceso", "nav.services": "Servicios",
     "nav.frameworks": "Metodología", "nav.about": "Quiénes Somos", "nav.contact": "Contacto",
     "nav.cta": "Reserva tu Diagnóstico",
-    "hero.tag": "ESTRATEGIA DIGITAL BOUTIQUE · ALCANCE GLOBAL",
+    "hero.tag": "THINK WITHOUT FILTERS · ACT WITHOUT FRICTION  ·  ESTRATEGIA DIGITAL · MALLORCA · DACH / UK / NÓRDICOS",
     "hero.title": "TIENES EL<br><em>PRODUCTO.</em><br>NOSOTROS<br>LOS TURISTAS.",
     "hero.sub": "Turistas de US, UK, Alemania, Australia y más ya te buscan. <strong>Reservan con tu competencia.</strong> Cerramos la brecha.",
     "hero.cta1": "Reserva un Diagnóstico Gratis", "hero.cta2": "Cómo trabajamos →",
@@ -779,16 +766,16 @@ const T = {
     "keynotes.booking.cta": "Solicitar Info de Speaker →",
     "process.label": "Cómo Funciona", "process.title": "DE INVISIBLE<br>A <em>COMPLETO.</em>",
     "process.sub": "Cuatro pasos. Sin comités. Sin informes de 200 páginas. Del primer contacto a los primeros resultados en 30 días o menos.",
-    "p1.title": "REALITY CHECK", "p1.desc": "Llamada gratuita de 15 min. Te decimos exactamente qué está roto y si podemos arreglarlo. Sin pitch. Solo la verdad.", "p1.price": "GRATIS · 15 MIN",
-    "p2.title": "GHOST SHIP AUDIT", "p2.desc": "Diagnóstico profundo de 72h. Web, redes, reputación, embudos de reserva, gap competitivo. Plan de acción priorizado — no un slide deck.", "p2.price": "DESDE €1.500",
-    "p3.title": "STRATEGY SPRINT", "p3.desc": "Estrategia digital completa para tu mercado objetivo. Contenido multilingüe, embudos de reserva, setup de plataformas, outreach en medios. Ejecutable desde el día 1.", "p3.price": "DESDE €3.000",
-    "p4.title": "EJECUCIÓN", "p4.desc": "Implementamos contigo o junto a tu equipo. Reporting mensual, KPIs, optimización continua. Resultados antes de que acabe la temporada.", "p4.price": "RETAINER DESDE €1.500/MES",
-    "services.label": "Lo Que Hacemos", "services.title": "SERVICIOS<br><em>ENFOCADOS.</em>",
-    "services.sub": "No hacemos de todo. Hacemos las cuatro cosas que marcan la diferencia para marcas de hospitality que quieren captar mercados internacionales.",
-    "s1.title": "ENTRADA EN MERCADOS", "s1.desc": "Tienes un gran producto. Los turistas alemanes, británicos y nórdicos vienen a tu zona — y eligen a tu competencia. Construimos la presencia digital que te pone en su radar antes de que aterricen.",
-    "s2.title": "GHOST SHIP AUDIT", "s2.desc": "Diagnóstico de 72h de toda tu presencia digital. Encontramos los gaps que no puedes ver desde dentro — embudos rotos, flujos de reserva invisibles, contenido que mata la conversión.",
-    "s3.title": "SISTEMAS DE CAPTACIÓN", "s3.desc": "Deja de esperar a que los turistas te encuentren. Construimos sistemas automáticos de captación de leads — landing pages multilingüe, embudos de reserva, secuencias de email.",
-    "s4.title": "KEYNOTES Y FORMACIÓN", "s4.desc": "Keynotes corporativas sobre transformación digital, estrategia en redes sociales e innovación en hospitality. Cursos académicos en escuelas de negocios y universidades. Disponible en inglés, español e italiano. Más de 20 eventos en Europa.",
+    "p1.title": "REALITY CHECK", "p1.desc": "Llamada gratuita de 15 min. Te decimos exactamente qué está roto y si podemos arreglarlo. Sin pitch. Solo la verdad.", "p1.price": "15 MIN · LLAMADA GRATIS",
+    "p2.title": "FRICTION AUDIT", "p2.desc": "Diagnóstico de 2 semanas. Mapeamos cada fuga entre tu promesa de marca y tu embudo de reserva directa — web, redes, reputación, dependencia de OTAs, gap competitivo. Sales con un hit-list priorizado, no con un slide deck.", "p2.price": "2 SEMANAS · FEE FIJO",
+    "p3.title": "VALUE SPRINT", "p3.desc": "2–4 semanas. Un fix visible al cliente por sprint. Contenido multilingüe, embudos de reserva, setup de plataformas, outreach en medios. Sin decks. Sin comités. Se envía o se mata.", "p3.price": "2–4 SEMANAS · FEE FIJO",
+    "p4.title": "UNFILTERED OS", "p4.desc": "Retainer de 6 meses. Instalamos el ritmo operativo — Napkin reviews, Kanban of Truth, Mechanism of Truth — junto a tu equipo. Reporting mensual, tracking de KPIs, y lo dejamos funcionando.", "p4.price": "RETAINER 6 MESES",
+    "services.label": "Nuestras Capacidades", "services.title": "PARA QUÉ<br><em>EXISTIMOS.</em>",
+    "services.sub": "Cuatro capacidades, mapeadas a cómo los viajeros internacionales te encuentran — o no — antes de aterrizar.",
+    "s1.title": "ENTRADA EN MERCADOS INTERNACIONALES", "s1.desc": "Tu producto es bueno. Los viajeros alemanes, británicos y nórdicos vienen a tu zona — y eligen a tu competencia porque no saben que existes. Construimos la presencia digital multilingüe que te pone en su radar antes de que aterricen.",
+    "s2.title": "DIAGNÓSTICO DE MARCA Y REPUTACIÓN", "s2.desc": "No puedes arreglar lo que no ves. Diagnosticamos tu superficie digital completa — web, redes, reseñas, embudos de reserva — usando nuestros frameworks Ghost Ship y Ferrari Syndrome. Output: hit-list priorizado de qué está roto y qué arreglar primero.",
+    "s3.title": "RESERVA DIRECTA Y CAPTACIÓN", "s3.desc": "Deja de pagar a OTAs para alquilar a tus clientes. Construimos sistemas automáticos de captación y reserva directa — landing pages multilingüe, embudos, secuencias de email, gestión de reseñas — que trabajan mientras duermes.",
+    "s4.title": "KEYNOTES Y FORMACIÓN", "s4.desc": "Keynotes corporativas sobre transformación digital, estrategia en redes sociales e innovación en hospitality. Cursos académicos en escuelas de negocios — incluyendo más de 10 años en ESERP, UIB y ESCOEX. Disponible en inglés, español e italiano.",
     "fw.label": "Metodología Propia", "fw.title": "CÓMO<br><em>PENSAMOS.</em>",
     "fw.sub": "Construido en 18 años dentro de uno de los mayores grupos hoteleros del mundo. No son teorías — son herramientas de diagnóstico probadas en batalla.",
     "fw1.tag": "Diagnóstico Operacional", "fw2.tag": "Análisis de Brecha", "fw3.tag": "Test de Claridad",
@@ -800,9 +787,9 @@ const T = {
     "fw5.desc": "Tus empleados más jóvenes son los más nativos digitalmente — y los más desconectados. Este framework revela la fricción que quema el talento que más necesitas.",
     "fw6.desc": "La mayoría de marcas toman decisiones digitales por intuición o FOMO competitivo. Mechanism of Truth instala una arquitectura de decisión basada en datos.",
     "about.label": "El Fundador", "about.title": "18 AÑOS.<br>40 PAÍSES.<br><em>CERO</em> NOISE.",
-    "about.text1": "Santiago García Solimei pasó 18 años como Director Global de Transformación Digital en Meliá Hotels International — uno de los grupos hoteleros más grandes del mundo. Dirigió estrategia digital en más de 40 países y construyó programas de transformación desde cero.",
+    "about.text1": "Santiago García Solimei pasó 18 años como Director Global de Social Media & Brands PR en Meliá Hotels International — uno de los grupos hoteleros más grandes del mundo. Dirigió social media y comunicación de marca en más de 40 países, 87 hoteles y con un presupuesto EMEA de €4,5M, e impulsó la adopción digital dentro de un gigante hostelero tradicional.",
     "about.text2": "Después dejó la maquinaria corporativa y construyó Unfiltered Mindsets en Mallorca — una consultora boutique para marcas que quieren pensamiento de director global sin burocracia corporativa, comités de aprobación ni slide decks.",
-    "cred.1": "Director Global de Transformación Digital — Meliá Hotels International",
+    "cred.1": "Director Global de Social Media & Brands PR — Meliá Hotels International",
     "cred.2": "18 años en estrategia digital de hospitality en más de 40 países",
     "cred.3": "Experto en mercados de turismo entrante DACH, UK y Nórdicos",
     "cred.4": "Profesor en ESERP, UIB y ESCOEX durante más de 10 años",
@@ -835,7 +822,7 @@ const T = {
     "nav.keynotes": "Keynotes", "nav.process": "Prozess", "nav.services": "Leistungen",
     "nav.frameworks": "Methodik", "nav.about": "Über uns", "nav.contact": "Kontakt",
     "nav.cta": "Reality Check buchen",
-    "hero.tag": "BOUTIQUE DIGITALSTRATEGIE · GLOBALE REICHWEITE",
+    "hero.tag": "THINK WITHOUT FILTERS · ACT WITHOUT FRICTION  ·  DIGITALSTRATEGIE · MALLORCA · DACH / UK / NORDICS",
     "hero.title": "SIE HABEN DAS<br><em>PRODUKT.</em><br>WIR HOLEN<br>DIE TOURISTEN.",
     "hero.sub": "Reisende aus den USA, UK, Deutschland und Australien suchen bereits nach Ihnen. <strong>Sie buchen bei Ihrem Mitbewerber.</strong> Wir schliessen die Lücke.",
     "hero.cta1": "Kostenlosen Reality Check buchen", "hero.cta2": "So arbeiten wir →",
@@ -857,16 +844,16 @@ const T = {
     "keynotes.booking.cta": "Speaker-Informationen anfordern →",
     "process.label": "So funktioniert es", "process.title": "VON UNSICHTBAR<br>ZU <em>AUSGEBUCHT.</em>",
     "process.sub": "Vier Schritte. Keine Komitees. Keine 200-seitigen Berichte. Vom ersten Gespräch zu ersten Ergebnissen in 30 Tagen oder weniger.",
-    "p1.title": "REALITY CHECK", "p1.desc": "Kostenloser 15-Min-Anruf. Wir sagen genau, was kaputt ist und ob wir es beheben können. Kein Pitch. Nur die Wahrheit.", "p1.price": "KOSTENLOS · 15 MIN",
-    "p2.title": "GHOST SHIP AUDIT", "p2.desc": "72-stündige Tiefenanalyse. Web, Social, Reputation, Buchungs-Funnels, Wettbewerbs-Gap. Priorisierter Aktionsplan — kein Foliensatz.", "p2.price": "AB €1.500",
-    "p3.title": "STRATEGY SPRINT", "p3.desc": "Vollständige Digitalstrategie für Ihren Zielmarkt. Mehrsprachige Inhalte, Buchungs-Funnels, Plattform-Setup, Medien-Outreach. Vom ersten Tag umsetzbar.", "p3.price": "AB €3.000",
-    "p4.title": "UMSETZUNG", "p4.desc": "Wir implementieren mit Ihnen oder neben Ihrem Team. Monatliches Reporting, KPI-Tracking, kontinuierliche Optimierung. Ergebnisse vor Saisonende.", "p4.price": "RETAINER AB €1.500/MONAT",
-    "services.label": "Was wir tun", "services.title": "FOKUSSIERTE<br><em>LEISTUNGEN.</em>",
-    "services.sub": "Wir machen nicht alles. Wir machen die vier Dinge, die den Unterschied für Hospitality-Marken machen, die internationale Märkte erschliessen wollen.",
-    "s1.title": "MARKTEINTRITT", "s1.desc": "Sie haben ein grossartiges Produkt. Deutsche, britische und nordische Touristen kommen in Ihre Region — und wählen Ihren Mitbewerber. Wir bauen die digitale Präsenz, die Sie in ihre Überlegungen einbringt.",
-    "s2.title": "GHOST SHIP AUDIT", "s2.desc": "72-Stunden-Diagnose Ihrer gesamten digitalen Präsenz. Wir finden Lücken, die Sie von innen nicht sehen können — kaputte Funnels, unsichtbare Buchungsflüsse, Content der Konversion verhindert.",
-    "s3.title": "LEAD-GENERIERUNG", "s3.desc": "Hören Sie auf zu warten. Wir bauen automatisierte Lead-Capture-Systeme — mehrsprachige Landing Pages, Buchungs-Funnels, E-Mail-Sequenzen, Bewertungsgenerierung.",
-    "s4.title": "KEYNOTES UND TRAINING", "s4.desc": "Corporate Keynotes über digitale Transformation, Social-Media-Strategie und Hospitality-Innovation. Akademische Kurse an Business Schools und Universitäten. Verfügbar auf Englisch, Spanisch und Italienisch. 20+ Veranstaltungen in Europa.",
+    "p1.title": "REALITY CHECK", "p1.desc": "Kostenloser 15-Min-Anruf. Wir sagen genau, was kaputt ist und ob wir es beheben können. Kein Pitch. Nur die Wahrheit.", "p1.price": "15 MIN · KOSTENLOS",
+    "p2.title": "FRICTION AUDIT", "p2.desc": "2-wöchige Diagnose. Wir kartieren jedes Leck zwischen Markenversprechen und direkter Buchungsstrecke — Web, Social, Reputation, OTA-Abhängigkeit, Wettbewerbslücke. Sie gehen mit einer priorisierten Liste, nicht mit einem Foliensatz.", "p2.price": "2 WOCHEN · FIXPREIS",
+    "p3.title": "VALUE SPRINT", "p3.desc": "2–4 Wochen. Ein kundensichtbares Fix pro Sprint. Mehrsprachige Inhalte, Buchungs-Funnels, Plattform-Setup, Medien-Outreach. Keine Decks. Keine Komitees. Ausliefern oder beenden.", "p3.price": "2–4 WOCHEN · FIXPREIS",
+    "p4.title": "UNFILTERED OS", "p4.desc": "6-Monate-Retainer. Wir installieren den operativen Rhythmus — Napkin Reviews, Kanban of Truth, Mechanism of Truth — neben Ihrem Team. Monatliches Reporting, KPI-Tracking, und wir lassen es laufen.", "p4.price": "RETAINER 6 MONATE",
+    "services.label": "Unsere Kompetenzen", "services.title": "WOFÜR WIR<br><em>GEBAUT SIND.</em>",
+    "services.sub": "Vier Kompetenzen, abgestimmt darauf, wie internationale Reisende Ihre Hospitality-Marke finden — oder nicht finden.",
+    "s1.title": "INTERNATIONALER MARKTEINTRITT", "s1.desc": "Ihr Produkt ist grossartig. Deutsche, britische und nordische Reisende kommen in Ihre Region — und wählen Ihren Mitbewerber, weil sie nicht wissen, dass Sie existieren. Wir bauen die mehrsprachige digitale Präsenz, die Sie in deren Auswahl bringt, bevor sie landen.",
+    "s2.title": "BRAND- & REPUTATIONSDIAGNOSE", "s2.desc": "Was Sie nicht sehen, können Sie nicht reparieren. Wir diagnostizieren Ihre gesamte digitale Oberfläche — Web, Social, Bewertungen, Buchungsflüsse — mit unseren Frameworks Ghost Ship und Ferrari Syndrome. Output: priorisierte Liste, was kaputt ist und was zuerst zu beheben ist.",
+    "s3.title": "DIREKTBUCHUNG & LEAD GEN", "s3.desc": "Hören Sie auf, OTAs für Ihre eigenen Kunden zu bezahlen. Wir bauen automatisierte Lead-Capture- und Direktbuchungssysteme — mehrsprachige Landing Pages, Buchungs-Funnels, E-Mail-Sequenzen, Bewertungsgenerierung — die arbeiten, während Sie schlafen.",
+    "s4.title": "KEYNOTES & EDUCATION", "s4.desc": "Corporate Keynotes über digitale Transformation, Social-Media-Strategie und Hospitality-Innovation. Akademische Kurse an Business Schools — darunter über 10 Jahre an ESERP, UIB und ESCOEX. Verfügbar auf Englisch, Spanisch und Italienisch.",
     "fw.label": "Eigene Methodik", "fw.title": "WIE WIR<br><em>DENKEN.</em>",
     "fw.sub": "Entwickelt aus 18 Jahren in einer der grössten Hotelgruppen der Welt. Keine Theorien — bewährte diagnostische Werkzeuge.",
     "fw1.tag": "Operative Diagnose", "fw2.tag": "Kompetenzlücken-Analyse", "fw3.tag": "Klarheitstest",
@@ -878,9 +865,9 @@ const T = {
     "fw5.desc": "Ihre jüngsten Mitarbeiter sind die digital versiertesten — und die am meisten abgehängten. Dieses Framework offenbart die Reibung, die das Talent verbrennt, das Sie am meisten brauchen.",
     "fw6.desc": "Die meisten Marken treffen digitale Entscheidungen aus dem Bauch oder aus FOMO. Mechanism of Truth installiert eine datenbasierte Entscheidungsarchitektur.",
     "about.label": "Der Gründer", "about.title": "18 JAHRE.<br>40 LÄNDER.<br><em>NULL</em> NOISE.",
-    "about.text1": "Santiago García Solimei verbrachte 18 Jahre als Global Director of Digital Transformation bei Meliá Hotels International — einer der grössten Hotelgruppen der Welt. Er leitete die Digitalstrategie in über 40 Ländern.",
+    "about.text1": "Santiago García Solimei verbrachte 18 Jahre als Global Director of Social Media & Brands PR bei Meliá Hotels International — einer der grössten Hotelgruppen der Welt. Er leitete Social Media und Brand Communications in über 40 Ländern, 87 Hotels und mit einem EMEA-Budget von 4,5 Mio. €, und trieb die digitale Adoption innerhalb eines traditionellen Hospitality-Konzerns voran.",
     "about.text2": "Dann verliess er die Konzernmaschinerie und gründete Unfiltered Mindsets auf Mallorca — eine Boutique-Beratung für Marken, die globales Direktoren-Denken ohne Unternehmensaufwand und Komiteegenehmigungen wollen.",
-    "cred.1": "Global Director of Digital Transformation — Meliá Hotels International",
+    "cred.1": "Global Director of Social Media & Brands PR — Meliá Hotels International",
     "cred.2": "18 Jahre in der Digitalstrategie des Gastgewerbes in 40+ Ländern",
     "cred.3": "Experte für eingehende Tourismusmärkte DACH, UK und Nordics",
     "cred.4": "Dozent an ESERP, UIB und ESCOEX Business Schools seit über 10 Jahren",
@@ -996,7 +983,7 @@ function sendWA(btn, text) {
   var replies = {
     "EN": { "en": "Perfect! Click below to open WhatsApp and we will schedule your free 15-min Reality Check.", "es": "Perfecto! Haz clic abajo para abrir WhatsApp y concretamos tu Reality Check gratuito.", "de": "Perfekt! Klicken Sie unten, um WhatsApp zu öffnen und Ihren kostenlosen Reality Check zu planen." },
     "ES": { "en": "Great! Let us chat about your event on WhatsApp. Audience size, topic, date — all the details.", "es": "Genial! Hablemos de tu evento en WhatsApp. Tamaño del público, tema, fecha — todos los detalles.", "de": "Super! Sprechen wir auf WhatsApp über Ihre Veranstaltung. Publikumsgröße, Thema, Datum." },
-    "AU": { "en": "The Ghost Ship Audit is a 72-hour deep-dive into your full digital presence. From 1500 euros. Want details?", "es": "El Ghost Ship Audit es un diagnóstico de 72h de toda tu presencia digital. Desde 1500 euros.", "de": "Das Ghost Ship Audit ist eine 72-stündige Analyse Ihrer digitalen Präsenz. Ab 1500 Euro." },
+    "AU": { "en": "The Friction Audit is a 2-week diagnostic of your full digital presence. We map every leak between your brand and your direct-booking funnel. Want details?", "es": "El Friction Audit es un diagnóstico de 2 semanas de toda tu presencia digital. Mapeamos cada fuga entre tu marca y tu embudo de reserva directa.", "de": "Das Friction Audit ist eine 2-wöchige Diagnose Ihrer gesamten digitalen Präsenz. Wir kartieren jedes Leck zwischen Marke und direkter Buchungsstrecke." },
     "ER": { "en": "That is our sweet spot. German tourists have the highest per-trip spend in Spain. Let us map your DACH strategy on WhatsApp.", "es": "Es exactamente nuestro punto fuerte. Los turistas alemanes tienen el mayor gasto por viaje. Hablamos en WhatsApp.", "de": "Das ist genau unser Stärkefeld. Deutsche Touristen haben die höchsten Ausgaben pro Reise. Sprechen wir auf WhatsApp." }
   };
   var icon = text.substring(0, 2).trim();
