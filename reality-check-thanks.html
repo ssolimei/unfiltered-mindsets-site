@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request received · Unfiltered Mindsets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #141414;
+      --green: #39FF14;
+      --white: #F0F0F0;
+      --grey: #888888;
+      --border: 1px solid rgba(57,255,20,0.35);
+      --font-h: 'Bebas Neue', sans-serif;
+      --font-b: 'Space Grotesk', sans-serif;
+      --font-m: 'Space Mono', monospace;
+    }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-b);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 5px);
+      pointer-events: none;
+    }
+    .wrap {
+      max-width: 600px;
+      text-align: center;
+      position: relative;
+    }
+    .eyebrow {
+      font-family: var(--font-m);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-family: var(--font-h);
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: 0.02em;
+      line-height: 0.92;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    h1 em { color: var(--green); font-style: normal; }
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    p.muted { color: var(--grey); font-size: 0.9rem; }
+    .back {
+      display: inline-block;
+      margin-top: 2rem;
+      font-family: var(--font-m);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      color: var(--green);
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--green);
+      padding-bottom: 2px;
+    }
+    .signature {
+      font-family: var(--font-m);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--grey);
+      text-transform: uppercase;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="eyebrow">— Request received</div>
+    <h1>NOW THE<br>NAPKIN <em>WAITS.</em></h1>
+    <p>I just got your request. Check your inbox shortly — if you asked for the Free Napkin, it arrives within 15 minutes. If you asked for Premium, I'll be in touch within 24h to schedule a 15-min call.</p>
+    <p class="muted">Check your spam folder too. Some inboxes are skeptical of unfiltered mail.</p>
+    <a href="/" class="back">← Back to Unfiltered Mindsets</a>
+    <div class="signature">
+      Santi · santi@unfiltered-mindsets.com<br>
+      AI-NATIVE DIGITAL MARKETING STUDIO
+    </div>
+  </div>
+</body>
+</html>
