@@ -402,7 +402,7 @@
             </div>
             <div class="form-group">
               <label for="business_url">Website URL<span class="req">*</span></label>
-              <input type="url" id="business_url" name="business_url" required placeholder="https://yourhotel.com" />
+              <input type="text" id="business_url" name="business_url" required placeholder="yourhotel.com" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" />
             </div>
           </div>
 
@@ -493,6 +493,24 @@
         }
       });
     });
+
+    // URL field · auto-prepend https:// if user typed naked domain (e.g. "hotels.com")
+    const urlField = document.getElementById('business_url');
+    function normalizeUrl() {
+      let v = urlField.value.trim();
+      if (!v) return;
+      // Strip any accidental leading "www." duplication
+      v = v.replace(/^\s+|\s+$/g, '');
+      if (!/^https?:\/\//i.test(v)) {
+        urlField.value = 'https://' + v.replace(/^\/+/, '');
+      }
+    }
+    if (urlField) {
+      urlField.addEventListener('blur', normalizeUrl);
+      // Also normalize right before submit, in case user pressed Enter without blurring
+      const form = document.querySelector('form[name="reality-check-request"]');
+      if (form) form.addEventListener('submit', normalizeUrl);
+    }
   </script>
 
 </body>
