@@ -1,0 +1,55 @@
+# Unfiltered Mindsets · robots.txt
+# We explicitly welcome AI search and answer engines.
+# Our content is meant to be discovered, cited, and surfaced by AI.
+
+User-agent: *
+Allow: /
+
+# OpenAI · ChatGPT search + browsing + training
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic · Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google · AI Overviews / Gemini grounding (separate from regular Googlebot)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Bytedance / Doubao / TikTok search
+User-agent: Bytespider
+Allow: /
+
+# Common Crawl (training corpus for many models)
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://unfiltered-mindsets.com/sitemap.xml
